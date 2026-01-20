@@ -129,6 +129,7 @@ const App = () => {
       <BrowserRouter>
          {/* smooth transtion when other page open  */}
             <ScrollToTop/>
+            
         <Routes>
           {/* navbar and footer routing */}
           <Route path="/" element={<MainLayout location={location} getlocation={getlocation} opendropdown={opendropdown} setOpendropdown={setOpendropdown} />}>
