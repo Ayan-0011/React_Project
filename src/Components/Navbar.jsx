@@ -26,7 +26,7 @@ const Navbar = ({ location, getlocation, opendropdown, setOpendropdown }) => {
 
     <div className="sticky top-0 z-10 bg-white flex justify-between md:px-5 ps-4 pe-3 py-5 items-center">
 
-      <div className='flex gap-7 item-center md:ms-40 mx-3'>
+      <div className='flex gap-7 item-center md:ms-40'>
         <h1 className='font-semibold text-3xl'><span className='text-red-500 font-serif'>Z</span>aptro</h1>
         <div className='md:flex gap-1 cursor-pointer text-gray-700 items-center hidden'>
           <MapPin className="text-red-500" />
