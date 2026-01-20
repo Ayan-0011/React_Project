@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+
+body{
+    overflow-x: hidden;  
+}
+/*clerk user button adjust */
+
+.cl-avatarBox{
+    width: 3rem;
+    height: 3rem;
+}
+
+input[type="checkbox"]{
+    background-color: white;
+    accent-color: red;
+    border:1px solid #ccc;
+    color:#333;
+}
+input[type="range"]{
+    background-color: white;
+    accent-color: red;
+    border:1px solid #ccc;
+    color:#333;
+}
