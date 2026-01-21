@@ -24,7 +24,7 @@ const SingleProduct = () => {
     const getSingleProduct = async () => {
 
         try {
-            const responce = await axios.get(`http://localhost:5000/products/${params.id}`);
+            const responce = await axios.get(`https://react-project-zt30.onrender.com/products/${params.id}`);
             const product = responce.data;
             setSingleProduct(product)
             //console.log(product);

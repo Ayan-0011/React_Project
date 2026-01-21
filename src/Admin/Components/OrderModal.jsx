@@ -6,7 +6,7 @@ const OrderModal = ({ closeModal, order_id, }) => {
     const [myorders, setMyorders] = useState([]);
 
     const order_data = async (id) => {
-        const res = await axios.get(`http://localhost:5000/orders`)
+        const res = await axios.get(`https://react-project-zt30.onrender.com/orders`)
         const data = res.data.find(item => item.id === id)
         setMyorders(data)
         //console.log(data);

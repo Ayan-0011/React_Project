@@ -19,7 +19,7 @@ const Productss = () => {
   const deleteHandler = async (id) => {
     const check = confirm("Do You want delete this Product ")
     if (check) {
-      const del_user = await axios.delete(`http://localhost:5000/products/${id}`)
+      const del_user = await axios.delete(`https://react-project-zt30.onrender.com/products/${id}`)
       toast.success("Product deleted successfully");
     }
     FetchAllproducts();

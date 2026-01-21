@@ -16,7 +16,7 @@ const Categories = () => {
 
     const fetchCategories = async () => {
         try {
-            const response = await axios.get("http://localhost:5000/categories");
+            const response = await axios.get("https://react-project-zt30.onrender.com/categories");
             setCategoryData(response.data);
             //console.log(response.data);
 
@@ -27,7 +27,7 @@ const Categories = () => {
 
     const fetchProducts = async () => {
         try {
-            const res = await axios.get("http://localhost:5000/products");
+            const res = await axios.get("https://react-project-zt30.onrender.com/products");
             setProducts(res.data);
         } catch (error) {
             console.log(error);
@@ -49,7 +49,7 @@ const Categories = () => {
     const deleteHandler = async (id) => {
         const check = confirm("Do You want delete this Catgeory")
         if (check) {
-            const del_user = await axios.delete(`http://localhost:5000/categories/${id}`)
+            const del_user = await axios.delete(`https://react-project-zt30.onrender.com/categories/${id}`)
             toast.success("category deleted successfully");
         }
         fetchCategories();

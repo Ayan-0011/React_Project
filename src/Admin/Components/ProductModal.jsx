@@ -7,7 +7,7 @@ const ProductModal = ({ closeModal, FetchAllproducts, editProduct }) => {
   const [cate, setCate] = useState([]);
 
   const fetch_data = async () => {
-    const res = await axios.get("http://localhost:5000/categories");
+    const res = await axios.get("https://react-project-zt30.onrender.com/categories");
     setCate(res.data);
   };
 
@@ -66,10 +66,10 @@ const ProductModal = ({ closeModal, FetchAllproducts, editProduct }) => {
     try {
       if (editProduct) {
         // UPDATE
-        await axios.put(`http://localhost:5000/products/${editProduct.id}`,obj_cate);
+        await axios.put(`https://react-project-zt30.onrender.com/products/${editProduct.id}`,obj_cate);
         toast.success("Product updated successfully");
       } else {
-        await axios.post("http://localhost:5000/products", {...obj_cate, id: new Date().getTime().toString()});
+        await axios.post("https://react-project-zt30.onrender.com/products", {...obj_cate, id: new Date().getTime().toString()});
         toast.success("Product added successfully");
       }
       FetchAllproducts();

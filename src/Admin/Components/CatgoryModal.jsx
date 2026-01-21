@@ -29,10 +29,10 @@ const CategotryModal = ({ closeModal, fetchCategories, editCategory }) => {
         e.preventDefault()
         try {
             if (editCategory) {
-                await axios.put(`http://localhost:5000/categories/${obj_cate.id}`, obj_cate);
+                await axios.put(`https://react-project-zt30.onrender.com/categories/${obj_cate.id}`, obj_cate);
                 toast.success("Category updated successfully");
             } else {
-                await axios.post("http://localhost:5000/categories", { ...obj_cate, id: new Date().getTime().toString(), });
+                await axios.post("https://react-project-zt30.onrender.com/categories", { ...obj_cate, id: new Date().getTime().toString(), });
                 toast.success("Category added successfully");
             }
 

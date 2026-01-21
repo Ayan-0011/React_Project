@@ -11,7 +11,7 @@ const Users = () => {
   // ================= GET USERS =================
   const getUsers = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/users");
+      const res = await axios.get("https://react-project-zt30.onrender.com/users");
       setAllUsers(res.data);
     } catch (err) {
       toast.error("Failed to load users");
@@ -22,7 +22,7 @@ const Users = () => {
   // ================= GET ORDERS =================
   const getOrders = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/orders");
+      const res = await axios.get("https://react-project-zt30.onrender.com/orders");
       setOrders(res.data);
     } catch (err) {
       toast.error("Failed to load orders");
@@ -35,7 +35,7 @@ const Users = () => {
     if (!check) return;
 
     try {
-      await axios.delete(`http://localhost:5000/users/${id}`);
+      await axios.delete(`https://react-project-zt30.onrender.com/users/${id}`);
       toast.success("User deleted successfully");
       getUsers();
     } catch (err) {
@@ -51,7 +51,7 @@ const Users = () => {
   // ================= CHANGE ROLE =================
   const changeRole = async (id, role) => {
     try {
-      await axios.patch(`http://localhost:5000/users/${id}`, {
+      await axios.patch(`https://react-project-zt30.onrender.com/users/${id}`, {
         role,
       });
 

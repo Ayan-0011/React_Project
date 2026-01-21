@@ -13,7 +13,7 @@ const Orders = () => {
 
   // orders data 
   const orders = async () => {
-    const orders = await axios.get("http://localhost:5000/orders")
+    const orders = await axios.get("https://react-project-zt30.onrender.com/orders")
     setMyOrders(orders.data)
     //console.log(Myorders);
   }
@@ -26,7 +26,7 @@ const Orders = () => {
   const updateOrderStatus = async (order, newStatus) => {
     try {
       await axios.put(
-        `http://localhost:5000/orders/${order.id}`,
+        `https://react-project-zt30.onrender.com/orders/${order.id}`,
         {
           ...order,
           status: newStatus

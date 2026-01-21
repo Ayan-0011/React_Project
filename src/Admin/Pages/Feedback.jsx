@@ -10,7 +10,7 @@ const Feedback = () => {
 
     const getFeedbacks = async () => {
         try {
-            const res = await axios.get("http://localhost:5000/Feedback");
+            const res = await axios.get("https://react-project-zt30.onrender.com/Feedback");
             setFeedbacks(res.data.reverse()); // latest first
         } catch (error) {
             console.log(error);
@@ -20,7 +20,7 @@ const Feedback = () => {
     };
 
     const deleteFB = async (id) => {
-        const res = await axios.delete(`http://localhost:5000/Feedback/${id}`)
+        const res = await axios.delete(`https://react-project-zt30.onrender.com/Feedback/${id}`)
         toast.success("Feedback deleted ~ ")
         setFeedbacks(res.data)
         getFeedbacks()

@@ -15,7 +15,7 @@ const Category_products = () => {
     const catedata = async () => {
 
         try {
-            const res = await axios.get("http://localhost:5000/products");
+            const res = await axios.get("https://react-project-zt30.onrender.com/products");
             const filterproducts = res.data.filter(item => item.category === category)
             setCategory_products(filterproducts)
           // console.log(filterproducts);

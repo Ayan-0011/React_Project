@@ -17,14 +17,14 @@ const Dashboard = () => {
 
     // orders data 
     const orders = async () => {
-        const orders = await axios.get("http://localhost:5000/orders")
+        const orders = await axios.get("https://react-project-zt30.onrender.com/orders")
         setMyOrders(orders.data)
         //console.log(Myorders);
     }
 
     //users data 
     const User = async () => {
-        const my_user = await axios.get("http://localhost:5000/users")
+        const my_user = await axios.get("https://react-project-zt30.onrender.com/users")
         setAllUsers(my_user.data)
         //console.log(allusers);
 

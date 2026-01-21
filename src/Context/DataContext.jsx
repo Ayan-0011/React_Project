@@ -13,7 +13,7 @@ export const DataProvider = ({ children }) => {
 
     const FetchAllproducts = async () => {
         try {
-            const response = await axios.get("http://localhost:5000/products")
+            const response = await axios.get("https://react-project-zt30.onrender.com/products")
             const ProductData = response.data
             setData(ProductData)
             //console.log(ProductData);
@@ -28,7 +28,7 @@ export const DataProvider = ({ children }) => {
     //fetch all categorys data 
     const fetchCategories = async () => {
         try {
-            const response = await axios.get("http://localhost:5000/categories");
+            const response = await axios.get("https://react-project-zt30.onrender.com/categories");
             setCategoryData(response.data);
         } catch (error) {
             console.log(error);
