@@ -36,7 +36,7 @@ const App = () => {
 
 
   const { user, isLoaded } = useUser();
-  // console.log(user);
+
 
 
   useEffect(() => {
