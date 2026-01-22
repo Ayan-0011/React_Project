@@ -59,7 +59,7 @@ const Cart = ({ location, getlocation }) => {
 
 
 
-  const totalPrice = cartitem.reduce( (total, item) => total + item.price * item.quantity, 0 );
+  const totalPrice = cartitem.reduce((total, item) => total + item.price * item.quantity, 0);
 
 
   const { user, isLoaded, isSignedIn } = useUser();
@@ -78,8 +78,13 @@ const Cart = ({ location, getlocation }) => {
     <div className=' flex flex-col gap-3 justify-center items-center h-[590px] mt-10'>
       <div>
         <h1 className='text-red-500/80 font-bold text-3xl md:text-5xl text-muted m-3 '>Plese Sign-up first</h1>
-        <img src={signin} alt="no" onClick={() => navigate("https://winning-hawk-24.accounts.dev/sign-up?redirect_url=http%3A%2F%2Flocalhost%3A5173%2F")} className="cursor-pointer w-[300px] md:w-[400px]" />
-        { navigate('/') }
+        <img src={signin} alt="no"
+         onClick={() => {
+          const redirectUrl = window.location.origin;
+          window.location.href = `https://winning-hawk-24.accounts.dev/sign-up?redirect_url=${redirectUrl}`;
+        }} 
+         className="cursor-pointer w-[300px] md:w-[400px]" />
+        {navigate('/')}
 
       </div>
     </div>

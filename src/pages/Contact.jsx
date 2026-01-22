@@ -49,7 +49,7 @@ const Contact = () => {
     };
 
     try {
-      await axios.post("http://localhost:5000/Feedback", finalMessage);
+      await axios.post("https://react-project-zt30.onrender.com/Feedback", finalMessage);
       toast.success("Thanks for feedback ❤️");
 
       setMessage((prev) => ({
