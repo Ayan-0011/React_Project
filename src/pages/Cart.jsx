@@ -34,11 +34,11 @@ const Cart = ({ location, getlocation }) => {
     }
 
     if (
-      !user?.fullName ||
-      !location?.state ||
-      !location?.postcode ||
-      !location?.country ||
-      !phone
+      !user?.fullName || "",
+      !location?.state || "",
+      !location?.postcode || "",
+      !location?.country || "",
+      !phone 
     ) {
       alert("Please fill all delivery details");
       return;

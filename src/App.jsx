@@ -37,22 +37,7 @@ const App = () => {
 
   const { user, isLoaded } = useUser();
 
-
-
-  useEffect(() => {
-
-    if (isLoaded && user && !user.publicMetadata?.role) {
-      user.update({
-        publicMetadata: {
-          role: "user",
-        },
-      });
-    }
-
-    createUserIfNotExists(user);
-
-  }, [isLoaded, user]);
-
+  // 🔹 Clerk user → DB user mapping
   const mapClerkUser = (user) => ({
     user_id: user.id,
     name: user.fullName,
@@ -62,26 +47,51 @@ const App = () => {
     createdAt: user.createdAt,
   });
 
-
+  // 🔹 Create user in DB if not exists
   const createUserIfNotExists = async (user) => {
-    if (!user) return;
+    if (!user || !user.id) return;
 
     try {
-      const res = await axios.get(`https://react-project-zt30.onrender.com/users?user_id=${user.id}`);
+      const res = await axios.get(
+        `https://react-project-zt30.onrender.com/users?user_id=${user.id}`
+      );
 
       if (res.data.length === 0) {
         const USER_DATA = mapClerkUser(user);
-        //console.log(res.data.length);
 
-        await axios.post("https://react-project-zt30.onrender.com/users", USER_DATA);
-        toast.success(`😊 Welcome ${user.firstName}`)
-      } else {
-        //console.log("User already exists");
+        await axios.post("https://react-project-zt30.onrender.com/users",USER_DATA);
+
+        toast.success(`😊 Welcome ${user.firstName}`);
       }
-    } catch (err) {
-      console.error(err);
+    } catch (error) {
+      console.error("User create error:", error);
     }
   };
+
+  // 🔥 MAIN EFFECT (FINAL FIX)
+  useEffect(() => {
+    if (!isLoaded || !user) return;
+
+    const syncUser = async () => {
+      try {
+        // Step 1: Role set karo (sirf first time)
+        if (!user.publicMetadata?.role) {
+          await user.update({
+            publicMetadata: { role: "user" },
+          });
+
+          await user.reload(); // 🔥 VERY IMPORTANT
+        }
+
+        // Step 2: DB me user create karo
+        await createUserIfNotExists(user);
+      } catch (error) {
+        console.error("Sync error:", error);
+      }
+    };
+
+    syncUser();
+  }, [isLoaded, user]);
 
 
 
@@ -113,8 +123,7 @@ const App = () => {
   //Load cart from local storage on initial render
   useEffect(() => {
     const storedCart = localStorage.getItem('cartItem')
-    if (storedCart) {
-      setCartitem(JSON.parse(storedCart))
+    if (storedCart) { setCartitem(JSON.parse(storedCart))
     }
   }, []);
 
@@ -127,8 +136,8 @@ const App = () => {
   return (
     <div>
       <BrowserRouter>
-         {/* smooth transtion when other page open  */}
-            <ScrollToTop/>
+        {/* smooth transtion when other page open  */}
+        <ScrollToTop />
 
         <Routes>
           {/* navbar and footer routing */}
@@ -146,7 +155,7 @@ const App = () => {
               <Route path='/cart' element={<Cart location={location} getlocation={getlocation} />}></Route>
             </Route>
           </Route>
-            
+
           {/* Routing for admin side  */}
           <Route path="/admin" element={<AdminRoute> <Sidebar /> </AdminRoute>}>
             <Route path="dashbord" element={<Dashboard />} />
