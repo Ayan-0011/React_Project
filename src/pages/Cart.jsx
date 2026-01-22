@@ -1,4 +1,4 @@
-import { useUser } from "@clerk/clerk-react";
+import { SignedOut, SignInButton, useUser } from "@clerk/clerk-react";
 import { useCart } from "../Context/CartContext";
 import { FaRegTrashAlt } from "react-icons/fa";
 import emptyCart from "../assets/empty-cart.png"
@@ -75,19 +75,30 @@ const Cart = ({ location, getlocation }) => {
   </>;
 
   if (!isSignedIn) return <>
-    <div className=' flex flex-col gap-3 justify-center items-center h-[590px] mt-10'>
-      <div>
-        <h1 className='text-red-500/80 font-bold text-3xl md:text-5xl text-muted m-3 '>Plese Sign-up first</h1>
-        <img src={signin} alt="no"
-         onClick={() => {
-          const redirectUrl = window.location.origin;
-          window.location.href = `https://winning-hawk-24.accounts.dev/sign-up?redirect_url=${redirectUrl}`;
-        }} 
-         className="cursor-pointer w-[300px] md:w-[400px]" />
-        {navigate('/')}
 
+    <div className="flex flex-col justify-center items-center h-[590px] mt-10">
+      <div className="flex flex-col items-center gap-6">
+        <h1 className="text-red-500/80 font-bold text-3xl md:text-5xl text-center">
+          Please Sign-up first
+        </h1>
+
+        <img
+          src={signin}
+          alt="signin"
+          className="cursor-pointer w-[300px] md:w-[400px]"
+        />
+
+        <SignedOut>
+          <SignInButton>
+            <button className="mt-4 bg-red-500 hover:bg-red-600 text-white px-8 py-3 rounded-full font-semibold text-lg shadow-md transition-all duration-300">
+              Sign In / Sign Up
+            </button>
+          </SignInButton>
+        </SignedOut>
       </div>
     </div>
+
+
 
   </>
 
