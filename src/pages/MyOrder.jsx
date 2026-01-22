@@ -21,7 +21,7 @@ const MyOrder = () => {
     if (!isLoaded || !isSignedIn) return;
 
     try {
-      const res = await axios.get(`http://localhost:5000/orders`, { params: { userId: user.id } });
+      const res = await axios.get(`https://react-project-zt30.onrender.com/orders`, { params: { userId: user.id } });
       const myorder = res.data;
       setFinalOrder(myorder)
     } catch (error) {
