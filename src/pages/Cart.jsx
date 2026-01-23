@@ -89,7 +89,7 @@ const Cart = ({ location, getlocation }) => {
         />
 
         <SignedOut>
-          <SignInButton>
+          <SignInButton mode="modal">
             <button className="mt-4 bg-red-500 hover:bg-red-600 text-white px-8 py-3 rounded-full font-semibold text-lg shadow-md transition-all duration-300">
               Sign In / Sign Up
             </button>

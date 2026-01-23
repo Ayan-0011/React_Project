@@ -60,7 +60,7 @@ const ResposiveMenu = ({ openNav, setOpenNav, getlocation, location, }) => {
                             {
                                 user ? <div></div> : <>
                                     <SignedOut>
-                                        <SignInButton className="bg-red-500 text-white px-2 py-1 rounded-md cursor-pointer" />
+                                        <SignInButton mode='modal' className="bg-red-500 text-white px-2 py-1 rounded-md cursor-pointer" />
                                     </SignedOut >
                                     <SignedIn>
                                         <UserButton />

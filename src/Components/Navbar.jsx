@@ -76,7 +76,7 @@ const Navbar = ({ location, getlocation, opendropdown, setOpendropdown }) => {
 
         <div className='hidden md:block item-center'>
           <SignedOut>
-            <SignInButton
+            <SignInButton mode='modal'
               className="bg-red-500 text-white px-2 py-1 rounded-md cursor-pointer" />
           </SignedOut >
 
