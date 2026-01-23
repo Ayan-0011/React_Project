@@ -69,7 +69,7 @@ const ResposiveMenu = ({ openNav, setOpenNav, getlocation, location, }) => {
                             }
                         </div>
                     </ul>
-
+                        <p className='mt-20 font-sans'>Made with ❤️ by Ayan</p>
                 </nav>
             </div>
         </div>

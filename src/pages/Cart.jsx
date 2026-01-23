@@ -45,7 +45,7 @@ const Cart = ({ location, getlocation }) => {
     }
 
     // order place
-    await placeOrder(user.id, paymentMethod);
+    await placeOrder(paymentMethod);
 
     // animation show
     setShowAnimation(true);

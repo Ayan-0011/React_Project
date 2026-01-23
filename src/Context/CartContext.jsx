@@ -59,7 +59,7 @@ export const CartProvider = ({ children }) => {
     }
 
     // ✅ PLACE ORDER
-    const placeOrder = async (userId, paymentMethod) => {
+    const placeOrder = async (paymentMethod) => {
         if (cartitem.length === 0) {
             toast.error("Cart is empty!");
             return;
@@ -82,7 +82,6 @@ export const CartProvider = ({ children }) => {
 
         try {
             await axios.post("https://react-project-zt30.onrender.com/orders", orderData);
-            toast.success("Order Placed Successfully!");
             setCartitem([]);
             localStorage.removeItem("cart")
         } catch (error) {
