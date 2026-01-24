@@ -7,7 +7,7 @@ const RecentActivity = () => {
 
       // orders data 
   const orders = async () => {
-    const orders = await axios.get("http://localhost:5000/orders")
+    const orders = await axios.get("https://react-project-zt30.onrender.com/orders")
     setMyOrders([...orders.data].reverse());
     //console.log(Myorders);
   }
