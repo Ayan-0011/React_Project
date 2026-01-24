@@ -60,6 +60,11 @@ export const CartProvider = ({ children }) => {
 
     // ✅ PLACE ORDER
     const placeOrder = async (paymentMethod) => {
+
+        const safeItems = cartitem.map(item => ({
+            ...item
+        }));
+
         if (cartitem.length === 0) {
             toast.error("Cart is empty!");
             return;
@@ -73,7 +78,7 @@ export const CartProvider = ({ children }) => {
         const orderData = {
             userId: user.id,
             username: user.fullName,
-            items: cartitem,
+            items: safeItems,
             totalAmount: totalAmount + 7,
             paymentMethod: paymentMethod,
             status: totalAmount < 70000 ? "confirmed" : "Placed",
