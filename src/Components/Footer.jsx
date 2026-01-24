@@ -33,10 +33,10 @@ const Footer = () => {
         <div className='mb-6 md:mb-0'>
             <h3 className='text-xl font-semibold'>Follow Us</h3>
             <div className='flex space-x-4 mt-2'>
-                <FaFacebook/>
-                <FaInstagram/>
-                <FaTwitterSquare/>
-                <FaPinterest/>
+                <FaFacebook size={22}/>
+                <FaInstagram size={22}/>
+                <FaTwitterSquare size={22}/>
+                <FaPinterest size={22}/>
             </div>
         </div>
         {/* newsletter subscription */}
@@ -47,7 +47,7 @@ const Footer = () => {
                 <input 
                 type="email" 
                 placeholder='Your email address'
-                className='w-full p-2 rounded-l-md  text-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-500'
+                className='em w-full p-2 rounded-l-md  text-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-500'
                 />
                 <button type='submit' className='bg-red-600 text-white px-4 rounded-r-md hover:bg-red-700'>Subscribe</button>
             </form>

@@ -61,9 +61,7 @@ export const CartProvider = ({ children }) => {
     // ✅ PLACE ORDER
     const placeOrder = async (paymentMethod) => {
 
-        const safeItems = cartitem.map(item => ({
-            ...item
-        }));
+        const safeItems = cartitem.map(item => ({...item }));
 
         if (cartitem.length === 0) {
             toast.error("Cart is empty!");

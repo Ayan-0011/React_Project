@@ -34,10 +34,9 @@ const App = () => {
   const { cartitem, setCartitem } = useCart();
 
 
-
   const { user, isLoaded } = useUser();
 
-  // 🔹 Clerk user → DB user mapping
+  // 🔹 Clerk → DB user mapping
   const mapClerkUser = (user) => ({
     user_id: user.id,
     name: user.fullName,
@@ -49,7 +48,7 @@ const App = () => {
 
   // 🔹 Create user in DB if not exists
   const createUserIfNotExists = async (user) => {
-    if (!user || !user.id) return;
+    if (!user?.id) return;
 
     try {
       const res = await axios.get(
@@ -59,39 +58,32 @@ const App = () => {
       if (res.data.length === 0) {
         const USER_DATA = mapClerkUser(user);
 
-        await axios.post("https://react-project-zt30.onrender.com/users",USER_DATA);
+        await axios.post(
+          "https://react-project-zt30.onrender.com/users",
+          USER_DATA
+        );
 
         toast.success(`😊 Welcome ${user.firstName}`);
       }
     } catch (error) {
-      console.error("User create error:", error);
+      console.error("User DB sync error:", error);
     }
   };
 
-  // 🔥 MAIN EFFECT (FINAL FIX)
+  // 🔥 MAIN EFFECT (STABLE & SAFE)
   useEffect(() => {
-    if (!isLoaded || !user) return;
+    if (!isLoaded || !user?.id) return;
 
-    const syncUser = async () => {
-      try {
-        // Step 1: Role set karo (sirf first time)
-        if (!user.publicMetadata?.role) {
-          await user.update({
-            publicMetadata: { role: "user" },
-          });
+    // 1️⃣ DB user create
+    createUserIfNotExists(user);
 
-          await user.reload(); // 🔥 VERY IMPORTANT
-        }
-
-        // Step 2: DB me user create karo
-        await createUserIfNotExists(user);
-      } catch (error) {
-        console.error("Sync error:", error);
-      }
-    };
-
-    syncUser();
-  }, [isLoaded, user]);
+    // 2️⃣ Role set (ONLY first time)
+    if (!user.publicMetadata?.role) {
+      user.update({
+        publicMetadata: { role: "user" },
+      });
+    }
+  }, [isLoaded, user?.id]); // 👈 VERY IMPORTANT
 
 
 
@@ -123,7 +115,8 @@ const App = () => {
   //Load cart from local storage on initial render
   useEffect(() => {
     const storedCart = localStorage.getItem('cartItem')
-    if (storedCart) { setCartitem(JSON.parse(storedCart))
+    if (storedCart) {
+      setCartitem(JSON.parse(storedCart))
     }
   }, []);
 
