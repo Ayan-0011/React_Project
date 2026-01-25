@@ -62,6 +62,8 @@ export const CartProvider = ({ children }) => {
     const placeOrder = async (paymentMethod) => {
 
         const safeItems = cartitem.map(item => ({...item }));
+        console.log(safeItems);
+        
 
         if (cartitem.length === 0) {
             toast.error("Cart is empty!");
@@ -85,7 +87,6 @@ export const CartProvider = ({ children }) => {
 
         try {
             await axios.post("https://react-project-zt30.onrender.com/orders", orderData);
-            setCartitem([]);
             localStorage.removeItem("cart")
         } catch (error) {
             toast.error("Order Failed!");
