@@ -61,15 +61,15 @@ export const CartProvider = ({ children }) => {
     // ✅ PLACE ORDER
     const placeOrder = async (paymentMethod) => {
 
-        const safeItems = cartitem.map(item => ({...item }));
-        console.log(safeItems);
         
-
         if (cartitem.length === 0) {
             toast.error("Cart is empty!");
             return;
         }
-
+        
+        const safeItems = cartitem.map(item => ({...item }));
+        console.log(safeItems);
+        
         const totalAmount = cartitem.reduce(
             (total, item) => total + item.price * item.quantity,
             0
@@ -87,6 +87,7 @@ export const CartProvider = ({ children }) => {
 
         try {
             await axios.post("https://react-project-zt30.onrender.com/orders", orderData);
+            setCartitem([]);
             localStorage.removeItem("cart")
         } catch (error) {
             toast.error("Order Failed!");

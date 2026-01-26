@@ -70,20 +70,23 @@ const App = () => {
     }
   };
 
-  // 🔥 MAIN EFFECT (STABLE & SAFE)
-  useEffect(() => {
-    if (!isLoaded || !user?.id) return;
+useEffect(() => {
+  if (!isLoaded || !user?.id) return;
 
-    // 1️⃣ DB user create
-    createUserIfNotExists(user);
+  const syncUser = async () => {
+    // 1️⃣ Create DB user
+    await createUserIfNotExists(user);
 
-    // 2️⃣ Role set (ONLY first time)
+    // 2️⃣ Set role ONLY once
     if (!user.publicMetadata?.role) {
-      user.update({
+      await user.update({
         publicMetadata: { role: "user" },
       });
     }
-  }, [isLoaded, user?.id]); // 👈 VERY IMPORTANT
+  };
+
+  syncUser();
+}, [isLoaded, user?.id]);
 
 
 

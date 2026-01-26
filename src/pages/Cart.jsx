@@ -38,19 +38,20 @@ const Cart = ({ location, getlocation }) => {
       !location?.state || "",
       !location?.postcode || "",
       !location?.country || "",
-      !phone 
+      !phone
     ) {
       alert("Please fill all delivery details");
       return;
     }
 
-    // order place
-    await placeOrder(paymentMethod);
+    const success = await placeOrder(paymentMethod);
 
-    // animation show
+    if (!success) return;
+
+    // ✅ show success animation
     setShowAnimation(true);
 
-    // 3.5 sec baad redirect
+    // ✅ redirect after 3.5 sec
     setTimeout(() => {
       setShowAnimation(false);
       navigate("/myorder");
