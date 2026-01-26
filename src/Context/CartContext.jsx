@@ -95,6 +95,9 @@ export const CartProvider = ({ children }) => {
         }
     };
 
+    console.log(cartitem); 
+ 
+    
 
     return <CartContext.Provider value={{ cartitem, setCartitem, addToCart, updateQuantity, deleteItem, placeOrder }}>
         {children}
