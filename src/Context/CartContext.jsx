@@ -89,9 +89,11 @@ export const CartProvider = ({ children }) => {
             await axios.post("https://react-project-zt30.onrender.com/orders", orderData);
             setCartitem([]);
             localStorage.removeItem("cart")
+            return true;
         } catch (error) {
             toast.error("Order Failed!");
             console.log(error);
+            return false; 
         }
     };
 

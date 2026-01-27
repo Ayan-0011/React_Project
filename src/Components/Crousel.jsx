@@ -61,7 +61,7 @@ const Crousel = () => {
                   onClick={()=> navigate('/product') }>Shop Now</button>
                 </div>
                 <div>
-                  <img src={item.images[0]} onClick={()=>navigate(`/products/${item.id}`)} alt={item.title} className='object-cover rounded-full w-[500px] cursor-pointer hover:scale-105 transition-all shadow-2xl shadow-red-400' />
+                  <img src={item.images[0]} onClick={()=>navigate(`/products/${item.id}`)} alt={item.title} className='object-cover rounded-full md:w-[500px]  cursor-pointer hover:scale-105 transition-all shadow-2xl shadow-red-400' />
                 </div>
               </div>
             </div>
