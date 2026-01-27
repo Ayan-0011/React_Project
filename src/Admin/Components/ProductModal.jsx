@@ -37,9 +37,9 @@ const ProductModal = ({ closeModal, FetchAllproducts, editProduct }) => {
         category: editProduct.category || "",
         title: editProduct.title || "",
         brand: editProduct.brand || "",
-        price: editProduct.price || "",
-        discount: editProduct.discount || "",
-        stock: editProduct.stock || "",
+        price: editProduct.price === "" ? "" : Number(editProduct.price),
+        discount: editProduct.discount === "" ? "" : Number(editProduct.discount),
+        stock: editProduct.stock === "" ? "" : Number(editProduct.stock),
         images: editProduct.images || ["", "", ""],
         min_desc: editProduct.min_desc || "",
         long_desc: editProduct.long_desc || ""
@@ -48,15 +48,25 @@ const ProductModal = ({ closeModal, FetchAllproducts, editProduct }) => {
   }, [editProduct]);
 
   const changeHandel = (e) => {
-    const { name, value } = e.target; setData((prev) => ({...prev,[name]: value })); 
-};
+    const { name, value } = e.target;
+
+    // jis field ka number chahiye
+    const numberFields = ["price", "discount", "stock"];
+
+    setData((prev) => ({
+      ...prev,
+      [name]: numberFields.includes(name)
+        ? value === "" ? "" : Number(value)
+        : value
+    }));
+  };
 
 
   const handleImageChange = (e, index) => {
     const newImages = [...obj_cate.images];
     newImages[index] = e.target.value;
 
-    setData((prev) => ({ ...prev,images: newImages }));
+    setData((prev) => ({ ...prev, images: newImages }));
   };
 
 
@@ -66,10 +76,10 @@ const ProductModal = ({ closeModal, FetchAllproducts, editProduct }) => {
     try {
       if (editProduct) {
         // UPDATE
-        await axios.put(`https://react-project-zt30.onrender.com/products/${editProduct.id}`,obj_cate);
+        await axios.put(`https://react-project-zt30.onrender.com/products/${editProduct.id}`, obj_cate);
         toast.success("Product updated successfully");
       } else {
-        await axios.post("https://react-project-zt30.onrender.com/products", {...obj_cate, id: new Date().getTime().toString()});
+        await axios.post("https://react-project-zt30.onrender.com/products", { ...obj_cate, id: new Date().getTime().toString() });
         toast.success("Product added successfully");
       }
       FetchAllproducts();
@@ -107,7 +117,7 @@ const ProductModal = ({ closeModal, FetchAllproducts, editProduct }) => {
           </select>
 
           {/* TITLE */}
-          <input  type="text"  name="title" value={obj_cate.title} onChange={changeHandel}  placeholder="Product Name" className="w-full p-2 border rounded" required />
+          <input type="text" name="title" value={obj_cate.title} onChange={changeHandel} placeholder="Product Name" className="w-full p-2 border rounded" required />
 
           {/* BRAND & PRICE */}
           <div className="grid grid-cols-2 gap-4">
@@ -119,18 +129,18 @@ const ProductModal = ({ closeModal, FetchAllproducts, editProduct }) => {
 
           {/* DISCOUNT & STOCK */}
           <div className="grid grid-cols-2 gap-4">
-            <input type="number" name="discount"  value={obj_cate.discount}  onChange={changeHandel}  placeholder="Discount %"  className="p-2 border rounded" />
+            <input type="number" name="discount" value={obj_cate.discount} onChange={changeHandel} placeholder="Discount %" className="p-2 border rounded" />
 
-            <input  type="number"  name="stock"  value={obj_cate.stock}  onChange={changeHandel}  placeholder="Stock"  className="p-2 border rounded"  required />
+            <input type="number" name="stock" value={obj_cate.stock} onChange={changeHandel} placeholder="Stock" className="p-2 border rounded" required />
           </div>
 
           {/* IMAGES */}
           {obj_cate.images.map((img, i) => (
-            <input key={i}  type="url"  value={img}  placeholder={`Image URL ${i + 1}`}  onChange={(e) => handleImageChange(e, i)} className="w-full p-2 border rounded"  />
+            <input key={i} type="url" value={img} placeholder={`Image URL ${i + 1}`} onChange={(e) => handleImageChange(e, i)} className="w-full p-2 border rounded" />
           ))}
 
           {/* DESCRIPTIONS */}
-          <textarea name="min_desc" value={obj_cate.min_desc} onChange={changeHandel}placeholder="Short Description" className="w-full p-2 border rounded" />
+          <textarea name="min_desc" value={obj_cate.min_desc} onChange={changeHandel} placeholder="Short Description" className="w-full p-2 border rounded" />
 
           <textarea name="long_desc" value={obj_cate.long_desc} onChange={changeHandel} placeholder="Long Description" className="w-full p-2 border rounded" />
 

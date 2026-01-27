@@ -66,7 +66,7 @@ const Productss = () => {
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{product.id}</td>
                     <td className="px-6 py-4 whitespace-nowrap  text-sm text-gray-900">{product.title}</td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{product.category}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-900">₹ {Number(product.price.toLocaleString("en-IN"))}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-900">₹{ (product.price.toLocaleString("en-IN"))}</td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{product.stock}</td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm">
                       <button onClick={() => editHandler(product)} className="text-blue-600 hover:text-blue-800 font-medium mr-3 cursor-pointer"><Edit size={20} /></button>

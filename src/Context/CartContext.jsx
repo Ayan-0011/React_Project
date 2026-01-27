@@ -97,7 +97,7 @@ export const CartProvider = ({ children }) => {
         }
     };
 
-    console.log(cartitem); 
+    //console.log(cartitem); 
  
     
 
